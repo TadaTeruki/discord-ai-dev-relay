@@ -51,7 +51,12 @@ async def on_message(message: discord.Message) -> None:
             continue
 
         try:
-            await target_channel.send(message.content)
+            server_name = message.guild.name if message.guild else ""
+            header = f"-# >>> {message.author.display_name} `from {server_name}`"
+            if message.jump_url:
+                header += f" {message.jump_url}"
+            body = f"{header}\n{message.content}"
+            await target_channel.send(body)
         except Exception:
             logger.exception("Failed to forward message to channel %s", target_id)
 
