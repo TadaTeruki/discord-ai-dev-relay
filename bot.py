@@ -26,6 +26,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
+message_mapping = {}
+
 
 @client.event
 async def on_ready() -> None:
@@ -56,10 +58,48 @@ async def on_message(message: discord.Message) -> None:
             if message.jump_url:
                 header += f" {message.jump_url}"
             body = f"{header}\n{message.content}"
-            await target_channel.send(body)
+            relay_msg = await target_channel.send(body)
+            message_mapping.setdefault(message.id, []).append((target_id, relay_msg.id))
         except Exception:
             logger.exception("Failed to forward message to channel %s", target_id)
 
+
+@client.event
+async def on_message_edit(before: discord.Message, after: discord.Message) -> None:
+    if before.id not in message_mapping:
+        return
+    server_name = after.guild.name if after.guild else ""
+    header = f"-# {after.author.display_name} `{server_name}`"
+    if after.jump_url:
+        header += f" {after.jump_url}"
+    body = f"{header}\n{after.content}"
+    for target_id, relay_id in message_mapping.get(before.id, []):
+        target_channel = client.get_channel(target_id)
+        if target_channel is None:
+            logger.warning("Linked channel %s not found during edit", target_id)
+            continue
+        try:
+            relay_msg = await target_channel.fetch_message(relay_id)
+            await relay_msg.edit(content=body)
+        except Exception:
+            logger.exception("Failed to edit relayed message %s in channel %s", relay_id, target_id)
+
+
+@client.event
+async def on_message_delete(message: discord.Message) -> None:
+    mapping = message_mapping.pop(message.id, None)
+    if not mapping:
+        return
+    for target_id, relay_id in mapping:
+        target_channel = client.get_channel(target_id)
+        if target_channel is None:
+            logger.warning("Linked channel %s not found during delete", target_id)
+            continue
+        try:
+            relay_msg = await target_channel.fetch_message(relay_id)
+            await relay_msg.delete()
+        except Exception:
+            logger.exception("Failed to delete relayed message %s in channel %s", relay_id, target_id)
 
 def main() -> None:
     client.run(DISCORD_BOT_TOKEN)
