@@ -52,7 +52,7 @@ async def on_message(message: discord.Message) -> None:
 
         try:
             server_name = message.guild.name if message.guild else ""
-            header = f"-# >>> {message.author.display_name} `from {server_name}`"
+            header = f"-# {message.author.display_name} `{server_name}`"
             if message.jump_url:
                 header += f" {message.jump_url}"
             body = f"{header}\n{message.content}"
