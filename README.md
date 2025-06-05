@@ -4,13 +4,12 @@
 
 ## Prerequisites
 
-- Python 3.8+
 - [Rye](https://rye-up.com/) Python project manager
 
 ## Setup
 
 ```bash
-rye install
+rye sync
 ```
 
 > This installs both runtime and development dependencies defined in `pyproject.toml`.
@@ -27,12 +26,4 @@ cp config.example.json config.json
 
 ```bash
 rye run python bot.py
-```
-
-## Linting & Formatting
-
-Before committing any changes, run:
-
-```bash
-rye run ruff --fix .
 ```
