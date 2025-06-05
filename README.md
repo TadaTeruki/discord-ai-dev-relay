@@ -1,28 +1,38 @@
-# Discord AI Dev Relay
+# Discord Relay Bot
 
-Discord bot for sharing text messages, pictures, and videos between multiple channels.
+Discordのテキストチャンネルを中継するボットです。
 
-## Prerequisites
+主な機能：
+- テキストメッセージの中継。メッセージ削除・編集も同期します
+- 画像・動画の共有
 
-- [Rye](https://rye.astral.sh/) Python project manager
+## Makefile
 
-## Setup
+- `make init`：依存関係をインストール（`rye sync`を実行）
+- `make run`：実行中のbotを停止後、フォアグラウンドでbotを起動
+- `make run-back`：実行中のbotを停止後、バックグラウンドでbotを起動
+- `make stop`：実行中のbotプロセスを停止
+
+## 開発環境
+
+- [Rye](https://rye.astral.sh/)
+
+## 導入
 
 ```bash
 rye sync
 ```
 
-This installs both runtime and development dependencies defined in `pyproject.toml`.
+`pyproject.toml` に定義されたランタイムおよび開発用依存関係をインストールします。
 
-Copy the example configuration and update it with your bot token and channel IDs:
+`config.json`にて認証情報およびチャンネルのIDを設定してください。  
+サンプルが`config.example.json`にあるので参照してください。
 
 ```bash
 cp config.example.json config.json
 ```
 
-Edit `config.json` to add your Discord bot token and the list of channel IDs to link.
-
-## Usage
+## 使用方法
 
 ```bash
 rye run python bot.py
