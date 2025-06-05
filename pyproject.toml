@@ -3,7 +3,7 @@ name = "discord-ai-dev-relay"
 version = "0.1.0"
 description = "Discord bot for sharing text messages, pictures, and videos between multiple channels"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 dependencies = ["discord.py"]
 
 [tool.rye.dev-dependencies]
