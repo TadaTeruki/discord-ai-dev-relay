@@ -12,6 +12,4 @@ run-back: stop
 
 .PHONY: stop
 stop:
-	if pgrep -f bot.py > /dev/null; then \
-		kill $(shell pgrep -f bot.py); \
-	fi
+	pkill -f "bot.py" || true
