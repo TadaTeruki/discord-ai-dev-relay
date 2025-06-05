@@ -55,8 +55,8 @@ async def on_message(message: discord.Message) -> None:
         try:
             server_name = message.guild.name if message.guild else ""
             header = f"-# {message.author.display_name} `{server_name}`"
-            if message.jump_url:
-                header += f" {message.jump_url}"
+            # if message.jump_url:
+            #     header += f" {message.jump_url}"
             body = f"{header}\n{message.content}"
             files = [await att.to_file() for att in message.attachments] if message.attachments else None
             if files:
@@ -74,8 +74,8 @@ async def on_message_edit(before: discord.Message, after: discord.Message) -> No
         return
     server_name = after.guild.name if after.guild else ""
     header = f"-# {after.author.display_name} `{server_name}`"
-    if after.jump_url:
-        header += f" {after.jump_url}"
+    # if after.jump_url:
+    #     header += f" {after.jump_url}"
     body = f"{header}\n{after.content}"
     files = [await att.to_file() for att in after.attachments]
     for target_id, relay_id in message_mapping.get(before.id, []):
