@@ -3,11 +3,11 @@ init:
 	rye sync
 
 .PHONY: run
-run: stop
+run:
 	rye run python bot.py
 
 .PHONY: run-back
-run-back: stop
+run-back:
 	rye run python bot.py &
 
 .PHONY: stop

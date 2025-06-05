@@ -9,8 +9,8 @@ Discordのテキストチャンネルを中継するボットです。
 ## Makefile
 
 - `make init`：依存関係をインストール（`rye sync`を実行）
-- `make run`：実行中のbotを停止後、フォアグラウンドでbotを起動
-- `make run-back`：実行中のbotを停止後、バックグラウンドでbotを起動
+- `make run`：フォアグラウンドでbotを起動
+- `make run-back`：バックグラウンドでbotを起動
 - `make stop`：実行中のbotプロセスを停止
 
 ## 開発環境
