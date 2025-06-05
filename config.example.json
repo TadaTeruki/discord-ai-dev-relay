@@ -1,0 +1,7 @@
+{
+    "discord_bot_token": "YOUR_DISCORD_BOT_TOKEN",
+    "linked_channel_ids": [
+        123456789012345678,
+        987654321098765432
+    ]
+}
