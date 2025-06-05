@@ -1,10 +1,10 @@
 # Discord AI Dev Relay
 
-> Discord bot for sharing text messages between multiple channels.
+> Discord bot for sharing text messages, pictures, and videos between multiple channels.
 
 ## Prerequisites
 
-- [Rye](https://rye-up.com/) Python project manager
+- [Rye](https://rye.astral.sh/) Python project manager
 
 ## Setup
 
