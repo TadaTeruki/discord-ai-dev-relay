@@ -1,6 +1,6 @@
 # Discord AI Dev Relay
 
-> Discord bot for sharing text messages, pictures, and videos between multiple channels.
+Discord bot for sharing text messages, pictures, and videos between multiple channels.
 
 ## Prerequisites
 
@@ -12,15 +12,15 @@
 rye sync
 ```
 
-> This installs both runtime and development dependencies defined in `pyproject.toml`.
+This installs both runtime and development dependencies defined in `pyproject.toml`.
 
-> Copy the example configuration and update it with your bot token and channel IDs:
+Copy the example configuration and update it with your bot token and channel IDs:
 
 ```bash
 cp config.example.json config.json
 ```
 
-> Edit `config.json` to add your Discord bot token and the list of channel IDs to link.
+Edit `config.json` to add your Discord bot token and the list of channel IDs to link.
 
 ## Usage
 
