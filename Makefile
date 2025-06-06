@@ -8,7 +8,7 @@ run:
 
 .PHONY: run-back
 run-back:
-	rye run python bot.py &
+	nohup rye run python bot.py &
 
 .PHONY: stop
 stop:

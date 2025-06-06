@@ -9,3 +9,5 @@ __pycache__/
 config.json
 
 *.egg-info/
+
+*.out
